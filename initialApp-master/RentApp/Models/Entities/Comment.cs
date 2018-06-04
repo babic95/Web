@@ -6,14 +6,15 @@ using System.Web;
 
 namespace RentApp.Models.Entities
 {
-    [Table("Services", Schema = "dbo")]
-    public class Service
+    [Table("Comments", Schema = "dbo")]
+    public class Comment
     {
         public int Id { get; set; }
+        public int ServiceId { get; set; }
         public int AppUserId { get; set; }
-        public string Name { get; set; }
-        public string Logo { get; set; }
-        public string Email { get; set; }
+
+        [Column("CommentDate", TypeName = "datetime2")]
+        public DateTime CommentDate { get; set; }
         public string Description { get; set; }
 
     }
