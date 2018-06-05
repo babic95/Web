@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RentApp.Persistance.Reposity
 {
-    interface ICommentRepository : IRepository<Comment, int>
+    public interface ICommentRepository : IRepository<Comment, int>
     {
         IEnumerable<Comment> GetAll(int pageIndex, int pageSize);
     }

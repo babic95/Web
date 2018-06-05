@@ -53,7 +53,7 @@ namespace RentApp
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<DbContext, RADBContext>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationUserManager>();
-            //container.RegisterType<IRepository<Vehicle, int>, Repository<Vehicle, int>>();
+            //container.RegisterType<IRepository<Vehicle, int>, Repository<Vehicle, int>>();    ako se ne prave implementacije interfejsa iz repository
             container.RegisterType<ISecureDataFormat<AuthenticationTicket>, CustomJwtFormat>(new InjectionConstructor("http://localhost:51680"));
             container.RegisterType<IUserStore<RAIdentityUser>, UserStore<RAIdentityUser>>(
             new InjectionConstructor(typeof(DbContext)));

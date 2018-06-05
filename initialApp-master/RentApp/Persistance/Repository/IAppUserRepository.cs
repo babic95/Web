@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace RentApp.Persistance.Reposity
 {
-    interface IVehicleRepository : IRepository<Vehicle, int>
+    public interface IAppUserRepository : IRepository<AppUser, int>
     {
-        IEnumerable<Vehicle> GetAll(int pageIndex, int pageSize);
+        IEnumerable<AppUser> GetAll(int pageIndex, int pageSize);
     }
 }
