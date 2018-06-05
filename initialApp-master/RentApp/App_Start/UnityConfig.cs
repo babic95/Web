@@ -4,6 +4,7 @@ using Microsoft.Owin.Security;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
 using RentApp.Providers;
+using RepoDemo.Persistance.Repository;
 using System;
 using System.Data.Entity;
 using Unity;
@@ -52,6 +53,7 @@ namespace RentApp
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<DbContext, RADBContext>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationUserManager>();
+            //container.RegisterType<IRepository<Vehicle, int>, Repository<Vehicle, int>>();
             container.RegisterType<ISecureDataFormat<AuthenticationTicket>, CustomJwtFormat>(new InjectionConstructor("http://localhost:51680"));
             container.RegisterType<IUserStore<RAIdentityUser>, UserStore<RAIdentityUser>>(
             new InjectionConstructor(typeof(DbContext)));
