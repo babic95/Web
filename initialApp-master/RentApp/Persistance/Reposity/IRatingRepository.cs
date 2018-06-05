@@ -11,6 +11,5 @@ namespace RentApp.Persistance.Reposity
     interface IRatingRepository : IRepository<Rating, int>
     {
         IEnumerable<Rating> GetAll(int pageIndex, int pageSize);
-    {
     }
 }
