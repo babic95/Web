@@ -1,5 +1,4 @@
-﻿using RentApp.Persistance.Reposity;
-using RepoDemo.Persistance.Repository;
+﻿using RentApp.Persistance.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Web;
 using Unity.Attributes;
 
-namespace RepoDemo.Persistance.UnitOfWork
+namespace RentApp.Persistance.UnitOfWork
 {
     public class DemoUnitOfWork : IUnitOfWork
     {

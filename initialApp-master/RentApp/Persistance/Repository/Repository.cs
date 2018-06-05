@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace RepoDemo.Persistance.Repository
+namespace RentApp.Persistance.Repository
 {
     public class Repository<TEntity, TPKey> : IRepository<TEntity, TPKey> where TEntity : class
     {

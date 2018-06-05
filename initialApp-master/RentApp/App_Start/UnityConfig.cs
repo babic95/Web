@@ -4,7 +4,6 @@ using Microsoft.Owin.Security;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
 using RentApp.Providers;
-using RepoDemo.Persistance.Repository;
 using System;
 using System.Data.Entity;
 using Unity;

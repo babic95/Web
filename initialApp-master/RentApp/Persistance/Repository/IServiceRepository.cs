@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RepoDemo.Persistance.Repository
+namespace RentApp.Persistance.Repository
 {
     public interface IServiceRepository : IRepository<Service, int>
     {

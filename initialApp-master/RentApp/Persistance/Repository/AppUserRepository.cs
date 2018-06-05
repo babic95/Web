@@ -1,5 +1,4 @@
 ﻿using RentApp.Models.Entities;
-using RepoDemo.Persistance.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Web;
 using System.Linq.Expressions;
 using System.Data.Entity;
 
-namespace RentApp.Persistance.Reposity
+namespace RentApp.Persistance.Repository
 {
     public class AppUserRepository : Repository<AppUser, int>, IAppUserRepository
     {

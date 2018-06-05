@@ -1,12 +1,11 @@
-﻿using RentApp.Persistance.Reposity;
-using RepoDemo.Persistance.Repository;
+﻿using RentApp.Persistance.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RepoDemo.Persistance.UnitOfWork
+namespace RentApp.Persistance.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {

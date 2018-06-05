@@ -6,7 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace RepoDemo.Persistance.Repository
+namespace RentApp.Persistance.Repository
 {
     public class ServiceRepository : Repository<Service, int>, IServiceRepository
     {
