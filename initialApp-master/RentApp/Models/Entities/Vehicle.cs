@@ -12,7 +12,7 @@ namespace RentApp.Models.Entities
         public int Id { get; set; }
         public int ServiceId { get; set; }
         public string TypeVehicle { get; set; }
-        public string Produce { get; set; }
+        public string Producer { get; set; }
         public string Model { get; set; }
 
         [Column("ProductionDate", TypeName = "datetime2")]

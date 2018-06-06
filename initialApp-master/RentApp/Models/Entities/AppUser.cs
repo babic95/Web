@@ -14,7 +14,7 @@ namespace RentApp.Models.Entities
         [Column("BirthDate", TypeName ="datetime2")]
         public DateTime? BirthDate { get; set; }
         public string Picture { get; set; }
-        public bool CenMakeRezervation { get; set; }
+        public bool CanMakeReservation { get; set; }
         public bool CanAddSercvice { get; set; }
     }
 }
