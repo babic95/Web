@@ -14,7 +14,7 @@ namespace RentApp.Persistance
         public virtual DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<Pricelist> Pricelists { get; set; }
+        public DbSet<PriceList> Pricelists { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }

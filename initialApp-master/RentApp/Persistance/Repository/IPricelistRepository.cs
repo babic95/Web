@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace RentApp.Persistance.Repository
 {
-    public interface IPricelistRepository : IRepository<Pricelist, int>
+    public interface IPricelistRepository : IRepository<PriceList, int>
     {
-        IEnumerable<Pricelist> GetAll(int pageIndex, int pageSize);
+        IEnumerable<PriceList> GetAll(int pageIndex, int pageSize);
     }
 }
