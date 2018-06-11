@@ -9,6 +9,10 @@ using System.Data.Entity;
 using Unity;
 using Unity.AspNet.Mvc;
 using Unity.Injection;
+using RentApp.Persistance.Repository;
+using RentApp.Persistance.UnitOfWork;
+using System.Web.Http;
+using Unity.Lifetime;
 
 namespace RentApp
 {
@@ -56,6 +60,19 @@ namespace RentApp
             container.RegisterType<ISecureDataFormat<AuthenticationTicket>, CustomJwtFormat>(new InjectionConstructor("http://localhost:51680"));
             container.RegisterType<IUserStore<RAIdentityUser>, UserStore<RAIdentityUser>>(
             new InjectionConstructor(typeof(DbContext)));
+            
+
+            container.RegisterType<IServiceRepository, ServiceRepository>();
+            container.RegisterType<IAppUserRepository, AppUserRepository>();
+            container.RegisterType<IBranchOfficeRepository, BranchOfficeRepository>();
+            container.RegisterType<ICommentRepository, CommentRepository>();
+            container.RegisterType<IItemRepository, ItemRepository>();
+            container.RegisterType<IPricelistRepository, PricelistRepository>();
+            container.RegisterType<IRatingRepository, RatingRepository>();
+            container.RegisterType<IReservationRepository, ReservationRepository>();
+            container.RegisterType<IVehicleRepository, VehicleRepository>();
+            container.RegisterType<IUnitOfWork, DemoUnitOfWork>();
+            
         }
     }
 }

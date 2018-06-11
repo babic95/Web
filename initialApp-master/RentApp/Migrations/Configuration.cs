@@ -95,6 +95,51 @@ namespace RentApp.Migrations
                 userManager.AddToRole(user.Id, "AppUser");
 
             }
+
+            Service ser = new Service();
+            BranchOffice br = new BranchOffice();
+            Vehicle v = new Vehicle();
+
+            ser.Name = "Service 1";
+            ser.Email = "ser_1@gmail.com";
+            ser.Description = "ser_1_decs";
+            ser.AppUserId = 2;
+
+            context.Services.AddOrUpdate(
+                s => s.Name,
+
+                ser
+
+            );
+            context.SaveChanges();
+
+            v.TypeVehicle = "Hatchback";
+
+            v.Producer = "Peugeot";
+            v.Model = "307";
+            v.ProductionDate = DateTime.Now;
+            v.ServiceId = ser.Id;
+            v.Available = true;
+
+            br.Addres = "br_1_addr";
+            br.X = 555555;
+            br.Y = 666666;
+            br.ServiceId = ser.Id;
+
+            context.BranchOffices.AddOrUpdate(
+                s => s.Addres,
+
+                br
+
+            );
+            context.Vehicles.AddOrUpdate(
+                s => s.Model,
+
+                v
+
+            );
+            context.SaveChanges();
+
         }
     }
 }
