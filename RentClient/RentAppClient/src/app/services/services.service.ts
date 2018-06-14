@@ -11,16 +11,18 @@ import { Service } from '../models/Service';
   providedIn: 'root'
 })
 export class ServicesService {
-
   constructor(private http: Http, private httpClient: HttpClient) { }
 
   getMethodServices(): Observable<Service[]> {
-    return this.httpClient.get<Service[]>('http://localhost:51680/api/Services')  }
+    return this.httpClient.get<Service[]>('http://localhost:51680/api/Services')  
+  }
 
-  getMethodService(): Observable<Service> {
-    return this.httpClient.get<Service>('http://localhost:51680/api/Services/{{id}}')  }
+  getMethodService(idService): Observable<Service> {
+    return this.httpClient.get<Service>(`http://localhost:51680/api/Services/${idService}`)  
+  }
 
   postMethodService(newMember): Observable<any> {
     return this.httpClient.post("http://localhost:51680/api/Services", newMember)
   }
+  
 }

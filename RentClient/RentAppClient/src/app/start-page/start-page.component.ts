@@ -15,7 +15,7 @@ export class StartPageComponent implements OnInit {
   services: Service[]
 
 
-  constructor(private httpClient: HttpClient, private Service: ServicesService) {
+  constructor(private Service: ServicesService) {
    }
 
   ngOnInit() { 

@@ -21,9 +21,9 @@ namespace RentApp.Controllers
         }
 
         // GET: api/Services
-        public IEnumerable<Comment> GetComments()
+        public IEnumerable<Comment> GetComments(int pageIndex, int idService)
         {
-            return unitOfWork.Comments.GetAll();
+            return unitOfWork.Comments.GetAll(pageIndex, 12, idService);
         }
 
         // GET: api/Services/5

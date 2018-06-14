@@ -9,6 +9,6 @@ namespace RentApp.Persistance.Repository
 {
     public interface ICommentRepository : IRepository<Comment, int>
     {
-        IEnumerable<Comment> GetAll(int pageIndex, int pageSize);
+        IEnumerable<Comment> GetAll(int pageIndex, int pageSize, int idService);
     }
 }

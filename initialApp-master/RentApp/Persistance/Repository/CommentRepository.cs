@@ -13,9 +13,9 @@ namespace RentApp.Persistance.Repository
         {
         }
 
-        public IEnumerable<Comment> GetAll(int pageIndex, int pageSize)
+        public IEnumerable<Comment> GetAll(int pageIndex, int pageSize, int idService)
         {
-            return RADBContext.Comments.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return RADBContext.Comments.Where<Comment>(v => v.ServiceId == idService).OrderBy(v => v.CommentDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
         }
 
         protected RADBContext RADBContext { get { return context as RADBContext; } }

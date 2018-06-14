@@ -21,9 +21,9 @@ namespace RentApp.Controllers
         }
 
         // GET: api/Vehicles
-        public IEnumerable<Vehicle> GetVehicles()
+        public IEnumerable<Vehicle> GetVehicles(int pageIndex, int idService)
         {
-            return unitOfWork.Vehicles.GetAll();
+            return unitOfWork.Vehicles.GetAll(pageIndex, 12, idService);
         }
 
         // GET: api/Vehicles/5

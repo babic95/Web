@@ -3,6 +3,7 @@ export class Vehicle {
     TypeVehicle: string; 
     Producer: string; 
     Model: string;
-
+    Pictures: string;
+    Description: string;
     
 }

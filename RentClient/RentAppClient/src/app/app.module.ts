@@ -34,15 +34,15 @@ const Routes = [
     component: RegistrationComponent
   },
   {
-    path: "service/:Id",
+    path: "service/:IdService",
     component: ServicePageComponent
   },
   {
-    path: "comment/:Id",
+    path: "comment/:IdService",
     component: ServicePageCommentComponent
   },
   {
-    path: "reservation/:Id",
+    path: "reservation/:IdService/:IdVehicle",
     component: ReservationPageComponent
   }
 ]
