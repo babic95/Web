@@ -288,6 +288,10 @@
     <Compile Include="Migrations\201806111039551_Migracija2.Designer.cs">
       <DependentUpon>201806111039551_Migracija2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806141049087_Migracija3.cs" />
+    <Compile Include="Migrations\201806141049087_Migracija3.Designer.cs">
+      <DependentUpon>201806141049087_Migracija3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -338,11 +342,11 @@
     <Content Include="favicon.ico" />
     <Content Include="Migrations\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Picture\1.jpg" />
-    <Content Include="Picture\2.jpg" />
-    <Content Include="Picture\3.jpg" />
-    <Content Include="Picture\4.jpg" />
-    <Content Include="Picture\s1.jpg" />
+    <Content Include="Content\Picture\1.jpg" />
+    <Content Include="Content\Picture\2.jpg" />
+    <Content Include="Content\Picture\3.jpg" />
+    <Content Include="Content\Picture\4.jpg" />
+    <Content Include="Content\Picture\s1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -418,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806111039551_Migracija2.resx">
       <DependentUpon>201806111039551_Migracija2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806141049087_Migracija3.resx">
+      <DependentUpon>201806141049087_Migracija3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

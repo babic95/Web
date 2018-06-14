@@ -13,4 +13,10 @@ export class MainComponent implements OnInit {
     
   }
 
+  LoginUser(){
+      return localStorage.jwt;
+  }
+  LogoutUser(){
+      localStorage.clear();
+  }
 }

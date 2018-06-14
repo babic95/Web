@@ -15,24 +15,14 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    this.user = {
-      password: ``,
-      username: ``
-    }
+    this.user = new LoginUser("", "");
   }
 
-  Login(user: LoginUser, form: NgForm) {
+  Login(user: LoginUser, ngForm: NgForm) {
     if(user.username != "" && user.password != ""){
-      /*this.loginService.getTheToken(user);
-      this.router.navigateByUrl('/home');
-      return true;*/
-      alert("PROSLO");
-    }
-    else{
-      alert("Greska");
-      /*alert("You have to enter username and password!");
-      form.reset();
-      return false;*/
+      this.loginService.getTheToken(user);
+      this.router.navigateByUrl('/start');
+      return true;
     }
   }
 }

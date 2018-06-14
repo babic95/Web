@@ -17,6 +17,7 @@ using RentApp.Models;
 using RentApp.Models.Entities;
 using RentApp.Providers;
 using RentApp.Results;
+using RentApp.Persistance.UnitOfWork;
 
 namespace RentApp.Controllers
 {
@@ -24,17 +25,20 @@ namespace RentApp.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
+        private readonly IUnitOfWork unitOfWork;
         private const string LocalLoginProvider = "Local";
 
         public AccountController()
         {
+            
         }
 
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IUnitOfWork unitOfWork)
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
+            this.unitOfWork = unitOfWork;
         }
 
         public ApplicationUserManager UserManager { get; private set; }
@@ -318,16 +322,25 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new RAIdentityUser() { UserName = model.Email, Email = model.Email };
-
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
+            var user = new RAIdentityUser() { UserName = model.Email, Email = model.Email, AppUser = new AppUser { Birthday = model.Birthday, Email = model.Email, FullName = model.FullName} };
+            AppUser userDB = unitOfWork.AppUsers.GetUser(user.Email);
+            if (userDB == null)
             {
-                return GetErrorResult(result);
-            }
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
-            return Ok();
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+                UserManager.AddToRole(user.Id, "AppUser");
+
+                return Ok();
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
 
         // POST api/Account/RegisterExternal

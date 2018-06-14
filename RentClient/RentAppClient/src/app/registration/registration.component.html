@@ -10,26 +10,26 @@
                           <h3 class="mb-0 my-2">Sign Up</h3>
                       </div>
                       <div class="card-body">
-                          <form class="form" role="form" autocomplete="off">
+                          <form #f="ngForm" (click)="Registration(f.value, f)">
                               <div class="form-group">
                                   <label for="inputName">Name</label>
-                                  <input type="text" class="form-control" id="inputName" placeholder="full name">
+                                  <input type="text" class="form-control" id="inputName" name="FullName" placeholder="full name" ngModel>
                               </div>
                               <div class="form-group">
                                   <label for="inputEmail3">Email</label>
-                                  <input type="email" class="form-control" id="inputEmail3" placeholder="email@gmail.com" required="">
+                                  <input type="email" class="form-control" id="inputEmail3" name="Email" placeholder="email@gmail.com" required="" ngModel>
                               </div>
                               <div class="form-group">
                                   <label for="inputPassword3">Password</label>
-                                  <input type="password" class="form-control" id="inputPassword3" placeholder="password" title="At least 6 characters with letters and numbers" required="">
+                                  <input type="password" class="form-control" id="inputPassword3" name="Password" placeholder="password" title="At least 6 characters with letters and numbers" required="" ngModel>
                               </div>
-                              <div class="form-group">
+                              <div class="form-group"> 
                                   <label for="inputVerify3">Verify</label>
-                                  <input type="password" class="form-control" id="inputVerify3" placeholder="password (again)" required="">
+                                  <input type="password" class="form-control" id="inputVerify3" name="ConfirmPassword" placeholder="password (again)" required="" ngModel>
                               </div>
                               <div class="form-group">
                                     <label for="inputVerify3">Date</label>
-                                    <input type="date" class="form-control" id="example-date-input">
+                                    <input type="date" class="form-control" name="Birthday" id="example-date-input" ngModel>
                                 </div>
                               <div class="form-group">
                                   <button type="submit" class="btn btn-success btn-lg float-right">Register</button>

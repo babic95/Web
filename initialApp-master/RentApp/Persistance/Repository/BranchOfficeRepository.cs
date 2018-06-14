@@ -13,9 +13,9 @@ namespace RentApp.Persistance.Repository
         {
         }
 
-        public IEnumerable<BranchOffice> GetAll(int pageIndex, int pageSize)
+        public IEnumerable<BranchOffice> GetAll(int idService)
         {
-            return RADBContext.BranchOffices.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return RADBContext.BranchOffices.Where<BranchOffice>(v => v.ServiceId == idService).OrderBy(v => v.Addres);
         }
 
         protected RADBContext RADBContext { get { return context as RADBContext; } }

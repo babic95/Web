@@ -21,9 +21,9 @@ namespace RentApp.Controllers
         }
 
         // GET: api/Services
-        public IEnumerable<BranchOffice> GetBranchOffices()
+        public IEnumerable<BranchOffice> GetBranchOffices(int idService)
         {
-            return unitOfWork.BranchOffices.GetAll();
+            return unitOfWork.BranchOffices.GetAll(idService);
         }
 
         // GET: api/Services/5

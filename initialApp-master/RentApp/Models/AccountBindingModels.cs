@@ -35,6 +35,10 @@ namespace RentApp.Models
     public class RegisterBindingModel
     {
         [Required]
+        [Display(Name = "Full name")]
+        public string FullName { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -48,6 +52,10 @@ namespace RentApp.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Birthday")]
+        public DateTime Birthday { get; set; }
     }
 
     public class RegisterExternalBindingModel

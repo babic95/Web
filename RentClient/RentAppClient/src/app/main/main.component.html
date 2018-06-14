@@ -7,7 +7,8 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/login']">Login</a>
+            <a *ngIf="!LoginUser()" class="nav-link" [routerLink]="['/login']">Login</a>
+            <a *ngIf="LoginUser()" (click)="LogoutUser()" class="nav-link" [routerLink]="['/start']">Logout</a>
         </li>
       </ul>
     </div>

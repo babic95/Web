@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientXsrfModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { StartPageComponent } from './start-page/start-page.component';
@@ -13,6 +14,7 @@ import { ServicePageComponent } from './service-page/service-page.component';
 import { ServicePageCommentComponent } from './service-page-comment/service-page-comment.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 import { MainComponent } from './main/main.component';
+import { BranchOfficeComponent } from './branch-office/branch-office.component';
 
 const Routes = [
   
@@ -56,14 +58,17 @@ const Routes = [
     ServicePageComponent,
     ServicePageCommentComponent,
     ReservationPageComponent,
-    MainComponent
+    MainComponent,
+    BranchOfficeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(Routes),
     HttpModule,
     HttpClientModule,
-    HttpClientXsrfModule
+    HttpClientXsrfModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
