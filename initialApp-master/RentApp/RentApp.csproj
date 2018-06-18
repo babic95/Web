@@ -293,6 +293,14 @@
     <Compile Include="Migrations\201806141049087_Migracija3.Designer.cs">
       <DependentUpon>201806141049087_Migracija3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806182034107_Migracija4.cs" />
+    <Compile Include="Migrations\201806182034107_Migracija4.Designer.cs">
+      <DependentUpon>201806182034107_Migracija4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806182136487_Migracija5.cs" />
+    <Compile Include="Migrations\201806182136487_Migracija5.Designer.cs">
+      <DependentUpon>201806182136487_Migracija5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -427,6 +435,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806141049087_Migracija3.resx">
       <DependentUpon>201806141049087_Migracija3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806182034107_Migracija4.resx">
+      <DependentUpon>201806182034107_Migracija4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806182136487_Migracija5.resx">
+      <DependentUpon>201806182136487_Migracija5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

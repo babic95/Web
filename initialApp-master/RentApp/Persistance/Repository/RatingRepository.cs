@@ -18,6 +18,16 @@ namespace RentApp.Persistance.Repository
             return RADBContext.Ratings.Skip((pageIndex - 1) * pageSize).Take(pageSize);
         }
 
+        public Rating GetRatingUser(int userId, int serviceId)
+        {
+            return RADBContext.Ratings.Where<Rating>(u => u.AppUserId == userId).Where<Rating>(u => u.ServiceId == serviceId).FirstOrDefault();
+        }
+
+        public IEnumerable<Rating> GetRating(int serviceId)
+        {
+            return RADBContext.Ratings.Where<Rating>(u => u.ServiceId == serviceId);
+        }
+
         protected RADBContext RADBContext { get { return context as RADBContext; } }
     }
 }

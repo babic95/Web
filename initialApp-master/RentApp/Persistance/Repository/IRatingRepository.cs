@@ -10,5 +10,8 @@ namespace RentApp.Persistance.Repository
     public interface IRatingRepository : IRepository<Rating, int>
     {
         IEnumerable<Rating> GetAll(int pageIndex, int pageSize);
+
+        Rating GetRatingUser(int userId, int serviceId);
+        IEnumerable<Rating> GetRating(int serviceId);
     }
 }

@@ -28,6 +28,16 @@ namespace RentApp.Controllers
         {
             return unitOfWork.Services.GetAll();
         }
+        public double RatingService(int serviceId)
+        {
+            double rating = 0;
+            IEnumerable<Rating> ratings = unitOfWork.Ratings.GetRating(serviceId);
+            foreach (var r in ratings)
+            {
+                rating += r.Grade;
+            }
+            return rating / ratings.Count();
+        }
 
         // GET: api/Services/5
         [ResponseType(typeof(Service))]
@@ -38,6 +48,8 @@ namespace RentApp.Controllers
             {
                 return NotFound();
             }
+
+            service.Rating = RatingService(service.Id);
 
             return Ok(service);
         }

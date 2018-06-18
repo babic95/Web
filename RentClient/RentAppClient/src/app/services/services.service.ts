@@ -24,5 +24,12 @@ export class ServicesService {
   postMethodService(newMember): Observable<any> {
     return this.httpClient.post("http://localhost:51680/api/Services", newMember)
   }
+
+  postMethodRating(newMember): Observable<any> {
+    return this.httpClient.post("http://localhost:51680/api/Rating", newMember)
+  }
+  postMethodComment(newMember): Observable<any> {
+    return this.httpClient.post("http://localhost:51680/api/Comment", newMember)
+  }
   
 }

@@ -48,13 +48,9 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != rating.Id)
-            {
-                return BadRequest();
-            }
-
             try
             {
+                rating.CommentDate = DateTime.Now;
                 unitOfWork.Ratings.Update(rating);
                 unitOfWork.Complete();
             }
@@ -82,8 +78,20 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            unitOfWork.Ratings.Add(rating);
-            unitOfWork.Complete();
+            Rating r = unitOfWork.Ratings.GetRatingUser(rating.AppUserId, rating.ServiceId);
+
+            if (r == null)
+            {
+                rating.CommentDate = DateTime.Now;
+                unitOfWork.Ratings.Add(rating);
+                unitOfWork.Complete();
+            }
+            else
+            {
+                r.Grade = rating.Grade;
+                PutRating(r.Id, r);
+            }
+
 
             return CreatedAtRoute("DefaultApi", new { id = rating.Id }, rating);
         }

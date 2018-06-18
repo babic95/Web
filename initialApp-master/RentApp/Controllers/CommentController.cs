@@ -81,6 +81,7 @@ namespace RentApp.Controllers
             {
                 return BadRequest(ModelState);
             }
+            comment.CommentDate = DateTime.Now;
 
             unitOfWork.Comments.Add(comment);
             unitOfWork.Complete();

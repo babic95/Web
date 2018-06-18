@@ -12,28 +12,30 @@
             <div class="card-body">
               <h3 class="card-title">{{service.Name}}</h3>
               <p class="card-text">{{service.Description}}</p>
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              4.0 stars
+              
+              {{service.Rating}} star
             </div>
           </div>
   <form #f="ngForm" (click)="RatingService(f.value, f)">
-    <div class="row col-5">
-        <div id="reviewStars-input">
-            <input id="star-4" type="checkbox" ng-checked name="reviewStars4" ngModel/>
-            <label title="gorgeous" for="star-4"></label>
+    <div class="row col-5">       
+        <fieldset class="rating">
+          <div id="reviewStars-input">
+              <input  id="star-4" type="radio" [name]="inpustName" value="5" [checked]="rating===5" />
+              <label title="gorgeous" (click)='onClick(5)'></label>
           
-            <input id="star-3" type="checkbox" name="reviewStars3" ngModel/>
-            <label title="good" for="star-3"></label>
+              <input id="star-3" type="radio" [name]="inpustName" value="4" [checked]="rating===4" />
+              <label title="good" (click)='onClick(4)'></label>
           
-            <input id="star-2" type="checkbox" name="reviewStars2" ngModel/>
-            <label title="regular" for="star-2"></label>
+              <input id="star-2"  type="radio" [name]="inpustName" value="3" [checked]="rating===3" />
+              <label title="regular" (click)='onClick(3)'></label>
           
-            <input id="star-1" type="checkbox" name="reviewStars1" ngModel/>
-            <label title="poor" for="star-1"></label>
+              <input id="star-1" type="radio" [name]="inpustName" value="2" [checked]="rating===2" />
+              <label title="poor" (click)='onClick(2)'></label>
           
-            <input id="star-0" type="checkbox" name="reviewStars0" ngModel/>
-            <label title="bad" for="star-0"></label>
-        </div>
+              <input id="star-0" type="radio" [name]="inpustName" value="1" [checked]="rating===1" />
+              <label title="bad" (click)='onClick(1)'></label>             
+          </div>
+        </fieldset>
     </div>
   </form>
           <br>
@@ -63,9 +65,9 @@
   <div class="card my-4">
     <h5 class="card-header">Leave a Comment:</h5> 
     <div class="card-body">
-      <form>
+      <form #f="ngForm" (ngSubmit)="Commenting(f.value, f)">
         <div class="form-group">
-          <textarea class="form-control" rows="3"></textarea>
+          <textarea name="Description" class="form-control" rows="3" ngModel></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -76,7 +78,7 @@
   <div class="media mb-4" *ngFor="let c of comments">
     <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
     <div class="media-body">
-      <h5 class="mt-0">Commenter Name <small>{{c.CommentDate}}</small></h5>
+      <h5 class="mt-0">{{c.FullNameUser}} <small>{{c.CommentDate}}</small></h5>
       {{c.Description}}
     </div>
   </div>

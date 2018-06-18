@@ -19,7 +19,7 @@ export class RegistrationComponent implements OnInit {
   constructor(private loginService: LoginService, private registrationService: RegistrationService, private router: Router) { }
 
   ngOnInit() {
-    this.user = new RegistrationUser("","","","","");
+    this.user = new RegistrationUser(0,"","","","","");
     this.userLogin = new LoginUser("","");
   }
 

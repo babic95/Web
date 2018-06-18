@@ -12,6 +12,7 @@ namespace RentApp.Models.Entities
         public int Id { get; set; }
         public int ServiceId { get; set; }
         public int AppUserId { get; set; }
+        public string FullNameUser { get; set; }
 
         [Column("CommentDate", TypeName = "datetime2")]
         public DateTime CommentDate { get; set; }
