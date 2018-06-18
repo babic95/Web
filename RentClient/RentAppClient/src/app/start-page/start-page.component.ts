@@ -3,6 +3,7 @@ import { Headers, RequestOptions } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServicesService } from '../services/services.service';
+import { LoginService } from '../services/login.service';
 
 import {Service} from '../models/Service'
 
@@ -13,12 +14,16 @@ import {Service} from '../models/Service'
 })
 export class StartPageComponent implements OnInit {
   services: Service[]
+  aaa
 
 
-  constructor(private Service: ServicesService) {
+  constructor(private Service: ServicesService, private Login: LoginService) {
    }
 
   ngOnInit() { 
+    if(localStorage.jwt){
+      this.Login.SetUserIDinToken(localStorage.getItem("currentUserEmail"));
+    }
     this.Service.getMethodServices()
     .subscribe(
       data => {

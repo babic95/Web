@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, RequestOptions } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {LoginUser} from '../models/LoginUser';
+import {RegistrationUser} from '../models/RegistrationUser';
 
 import { Observable } from 'rxjs';
 
@@ -10,6 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
   public user: LoginUser;
+  
+  public loginUser: LoginUser
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,6 +21,26 @@ export class LoginService {
       password: ``,
       username: ``
     }
+  }
+
+  getCurrentUser(Email: string): Observable<RegistrationUser> {
+    return this.httpClient.get<RegistrationUser>(`http://localhost:51680/api/Account/GetCurrent?email=${Email}`);
+  }
+
+  callGetCurrentUser(email: string){
+    this.getCurrentUser(email)
+    .subscribe(
+      data => {
+        if(data != null){
+          localStorage.setItem('currentUserEmail', data.Email);
+          localStorage.setItem('currentUserFullName', data.FullName);
+        }else{
+          console.log(`Error in callGetCurrentUser(${email})`);
+        }
+      },
+      error => {
+        console.log(error);
+      })
   }
 
   getTheToken(user: LoginUser){
@@ -48,12 +71,33 @@ export class LoginService {
 
           localStorage.setItem('jwt', jwt)
           localStorage.setItem('role', role);
+
+          this.callGetCurrentUser(user.username);
         },
         err => {
           console.log("Error occured");
         }
       );
     }
-    
+  }
+  
+
+  SetUserIDinToken(email){
+    this.getCurrentUser(email)
+    .subscribe(
+      data => {
+        if(data != null){
+          if(localStorage.getItem("currentUserID")){
+          }
+          else{
+            localStorage.setItem('currentUserID', String(data.Id));
+          }
+        }else{
+          console.log(`Error in callGetCurrentUser(${email})`);
+        }
+      },
+      error => {
+        console.log(error);
+      })
   }
 }

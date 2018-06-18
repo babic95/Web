@@ -6,6 +6,7 @@ import { ServicesService } from '../services/services.service';
 
 import {Service} from '../models/Service'
 import {Comment} from '../models/Comment'
+import {Rating} from '../models/Rating'
 import { CommentsService } from '../services/comments.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class ServicePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service = new Service(0,"", "", "", "")
+    this.service = new Service(0,"", "", "", "", 0)
     let x = this.router.url.split('/')
     this.idService = x[2]
     this.pageIndex = 1
@@ -62,4 +63,7 @@ export class ServicePageComponent implements OnInit {
       })
   }
 
+  RatingService(rating: Rating){
+    
+  }
 }

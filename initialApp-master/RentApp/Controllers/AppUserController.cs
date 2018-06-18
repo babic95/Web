@@ -28,9 +28,9 @@ namespace RentApp.Controllers
 
         // GET: api/Services/5
         [ResponseType(typeof(AppUser))]
-        public IHttpActionResult GetUser(int id)
+        public IHttpActionResult GetUser(string email)
         {
-            AppUser user = unitOfWork.AppUsers.Get(id);
+            AppUser user = unitOfWork.AppUsers.GetUser(email);
             if (user == null)
             {
                 return NotFound();

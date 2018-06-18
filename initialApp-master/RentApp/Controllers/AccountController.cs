@@ -270,6 +270,24 @@ namespace RentApp.Controllers
 
             return Ok();
         }
+        [AllowAnonymous]
+        [Route("GetCurrent")]
+        public AppUser GetCurrent(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return null;
+            }
+
+            AppUser currentUser = unitOfWork.AppUsers.GetUser(email);
+
+            if (currentUser == null)
+            {
+                return null;
+            }
+
+            return currentUser;
+        }
 
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
         [AllowAnonymous]

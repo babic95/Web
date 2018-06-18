@@ -15,6 +15,11 @@ import { ServicePageCommentComponent } from './service-page-comment/service-page
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 import { MainComponent } from './main/main.component';
 import { BranchOfficeComponent } from './branch-office/branch-office.component';
+import { AddServiceComponent } from './add-service/add-service.component';
+
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
+import { TruncateModule } from 'ng2-truncate';
 
 const Routes = [
   
@@ -46,6 +51,10 @@ const Routes = [
   {
     path: "reservation/:IdService/:IdVehicle",
     component: ReservationPageComponent
+  },
+  {
+    path: "addService",
+    component: AddServiceComponent
   }
 ]
 
@@ -59,7 +68,10 @@ const Routes = [
     ServicePageCommentComponent,
     ReservationPageComponent,
     MainComponent,
-    BranchOfficeComponent
+    BranchOfficeComponent,
+    AddServiceComponent,
+    FileSelectDirective,
+    FileDropDirective
   ],
   imports: [
     BrowserModule,
@@ -68,7 +80,8 @@ const Routes = [
     HttpClientModule,
     HttpClientXsrfModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2CarouselamosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

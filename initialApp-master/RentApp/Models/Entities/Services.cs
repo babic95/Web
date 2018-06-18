@@ -7,7 +7,7 @@ using System.Web;
 namespace RentApp.Models.Entities
 {
     [Table("Services", Schema = "dbo")]
-    public class Service
+    public partial class Service
     {
         public int Id { get; set; }
         public int AppUserId { get; set; }
