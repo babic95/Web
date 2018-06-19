@@ -1,90 +1,100 @@
 
 <!-- Page Content -->
-<div class="container" >
+<div class="container">
 
-  <div  align="center">
-    <!-- /.col-lg-3 -->
+    <div class="row">
 
-    <div class="col-lg-9" align="center">
+      <div class="col-lg-3">
 
-        <div class="card mt-4">
-            <img class="card-img-top img-fluid" src="service.Name" alt="">
-            <div class="card-body">
-              <h3 class="card-title">{{service.Name}}</h3>
-              <p class="card-text">{{service.Description}}</p>
-              
-              {{service.Rating}} star
-            </div>
-          </div>
-  <form #f="ngForm" (click)="RatingService(f.value, f)">
-    <div class="row col-5">       
-        <fieldset class="rating">
-          <div id="reviewStars-input">
-              <input  id="star-4" type="radio" [name]="inpustName" value="5" [checked]="rating===5" />
-              <label title="gorgeous" (click)='onClick(5)'></label>
-          
-              <input id="star-3" type="radio" [name]="inpustName" value="4" [checked]="rating===4" />
-              <label title="good" (click)='onClick(4)'></label>
-          
-              <input id="star-2"  type="radio" [name]="inpustName" value="3" [checked]="rating===3" />
-              <label title="regular" (click)='onClick(3)'></label>
-          
-              <input id="star-1" type="radio" [name]="inpustName" value="2" [checked]="rating===2" />
-              <label title="poor" (click)='onClick(2)'></label>
-          
-              <input id="star-0" type="radio" [name]="inpustName" value="1" [checked]="rating===1" />
-              <label title="bad" (click)='onClick(1)'></label>             
-          </div>
-        </fieldset>
-    </div>
-  </form>
-          <br>
-
-      <div class="row">
-
-        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let v of vehicles">
-          <div class="card h-100">
-            <a [routerLink]="['/reservation',service.Id, v.Id]" href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a [routerLink]="['/reservation',service.Id, v.Id]" href="#">{{v.Producer}} <small>{{v.Model}}</small></a>
-              </h4>
-              <h5>$24.99</h5>
-              <p class="card-text">{{v.Description}}</p>
-            </div>
-          </div>
+        <h1 class="my-4">Manager</h1>
+        <div class="list-group">
+          <a  [routerLink]="['/addBranchOffice',idService]" class="list-group-item">Add Branch Office</a>
+          <a  [routerLink]="['/addVehicle',idService]" class="list-group-item">Add Vehicle</a>
         </div>
 
       </div>
-      <!-- /.row -->
+      <!-- /.col-lg-3 -->
 
-    </div>
-    <!-- /.col-lg-9 -->
+      <div class="col-lg-9"align="center">
 
-  </div>
-  <div class="card my-4">
-    <h5 class="card-header">Leave a Comment:</h5> 
-    <div class="card-body">
-      <form #f="ngForm" (ngSubmit)="Commenting(f.value, f)">
-        <div class="form-group">
-          <textarea name="Description" class="form-control" rows="3" ngModel></textarea>
+          <div class="card mt-4">
+              <img class="card-img-top img-fluid" src="service.Name" alt="">
+              <div class="card-body">
+                <h3 class="card-title">{{service.Name}}</h3>
+                <p class="card-text">{{service.Description}}</p>
+                
+                {{service.Rating}} star
+              </div>
+            </div>
+    <form #f="ngForm" (click)="RatingService(f.value, f)">
+      <div class="row col-5">       
+          <fieldset class="rating">
+            <div id="reviewStars-input">
+                <input  id="star-4" type="radio" [name]="inpustName" value="5" [checked]="rating===5" />
+                <label title="gorgeous" (click)='onClick(5)'></label>
+            
+                <input id="star-3" type="radio" [name]="inpustName" value="4" [checked]="rating===4" />
+                <label title="good" (click)='onClick(4)'></label>
+            
+                <input id="star-2"  type="radio" [name]="inpustName" value="3" [checked]="rating===3" />
+                <label title="regular" (click)='onClick(3)'></label>
+            
+                <input id="star-1" type="radio" [name]="inpustName" value="2" [checked]="rating===2" />
+                <label title="poor" (click)='onClick(2)'></label>
+            
+                <input id="star-0" type="radio" [name]="inpustName" value="1" [checked]="rating===1" />
+                <label title="bad" (click)='onClick(1)'></label>             
+            </div>
+          </fieldset>
+      </div>
+    </form>
+            <br>
+  
+        <div class="row">
+  
+          <div class="col-lg-4 col-md-6 mb-4" *ngFor="let v of vehicles">
+            <div class="card h-100">
+              <a [routerLink]="['/reservation',service.Id, v.Id]" href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a [routerLink]="['/reservation',service.Id, v.Id]" href="#">{{v.Producer}} <small>{{v.Model}}</small></a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">{{v.Description}}</p>
+              </div>
+            </div>
+          </div>
+  
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <!-- /.row -->
+  
+      </div>
+      <!-- /.col-lg-9 -->
+  
     </div>
-  </div>
-
-  <!-- Single Comment -->
-  <div class="media mb-4" *ngFor="let c of comments">
-    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-    <div class="media-body">
-      <h5 class="mt-0">{{c.FullNameUser}} <small>{{c.CommentDate}}</small></h5>
-      {{c.Description}}
+    <div class="card my-4">
+      <h5 class="card-header">Leave a Comment:</h5> 
+      <div class="card-body">
+        <form #f="ngForm" (ngSubmit)="Commenting(f.value, f)">
+          <div class="form-group">
+            <textarea name="Description" class="form-control" rows="3" ngModel></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
+  
+    <!-- Single Comment -->
+    <div class="media mb-4" *ngFor="let c of comments">
+      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+      <div class="media-body">
+        <h5 class="mt-0">{{c.FullNameUser}} <small>{{c.CommentDate}}</small></h5>
+        {{c.Description}}
+      </div>
+    </div>
+    <!-- /.row -->
+  
   </div>
-  <!-- /.row -->
-
-</div>
 <!-- /.container -->
 
 <!-- Footer -->

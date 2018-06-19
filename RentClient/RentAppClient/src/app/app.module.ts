@@ -20,6 +20,8 @@ import { AddServiceComponent } from './add-service/add-service.component';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
 import { TruncateModule } from 'ng2-truncate';
+import { AddBranchOfficeComponent } from './add-branch-office/add-branch-office.component';
+import { AddVecihleComponent } from './add-vecihle/add-vecihle.component';
 
 const Routes = [
   
@@ -55,6 +57,14 @@ const Routes = [
   {
     path: "addService",
     component: AddServiceComponent
+  },
+  {
+    path: "addBranchOffice/:IdService",
+    component: AddBranchOfficeComponent
+  },
+  {
+    path: "addVehicle/:IdService",
+    component: AddVecihleComponent
   }
 ]
 
@@ -71,7 +81,9 @@ const Routes = [
     BranchOfficeComponent,
     AddServiceComponent,
     FileSelectDirective,
-    FileDropDirective
+    FileDropDirective,
+    AddBranchOfficeComponent,
+    AddVecihleComponent
   ],
   imports: [
     BrowserModule,

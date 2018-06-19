@@ -13,8 +13,7 @@ import {Service} from '../models/Service'
   styleUrls: ['./start-page.component.css']
 })
 export class StartPageComponent implements OnInit {
-  services: Service[]
-  aaa
+  services: Service[] = [];
 
 
   constructor(private Service: ServicesService, private Login: LoginService) {

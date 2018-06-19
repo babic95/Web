@@ -15,7 +15,7 @@ import { CommentsService } from '../services/comments.service';
   styleUrls: ['./service-page.component.css']
 })
 export class ServicePageComponent implements OnInit {
-  idService
+  public idService: string;
   pageIndex
   vehicles: Vehicle[]
   service: Service
@@ -69,7 +69,7 @@ export class ServicePageComponent implements OnInit {
 
   onClick(rating: number): void {
     this.ratingService.Grade = rating;
-    this.ratingService.ServiceId =  this.idService;
+    this.ratingService.ServiceId =  Number(this.idService);
     this.ratingService.AppUserId = Number(localStorage.getItem("currentUserID"));
 
     this.Service.postMethodRating(this.ratingService)
@@ -92,7 +92,7 @@ export class ServicePageComponent implements OnInit {
   }
 
   Commenting(com: Comment){
-    com.ServiceId = this.idService;
+    com.ServiceId = Number(this.idService);
     com.FullNameUser = localStorage.getItem("currentUserFullName");
     com.AppUserId = Number(localStorage.getItem("currentUserID"));
 
