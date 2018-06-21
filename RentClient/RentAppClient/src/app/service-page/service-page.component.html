@@ -6,7 +6,7 @@
 
       <div class="col-lg-3">
 
-        <div class="list-group">
+        <div  *ngIf="Authentication() && LoginUser()" class="list-group">
           <h1 class="my-4">Manager</h1>
           <a  [routerLink]="['/addBranchOffice',idService]" class="list-group-item">Add Branch Office</a>
           <a  [routerLink]="['/addVehicle',idService]" class="list-group-item">Add Vehicle</a>
@@ -26,8 +26,7 @@
                 {{service.Rating}} star
               </div>
             </div>
-    <form #f="ngForm" (click)="RatingService(f.value, f)">
-      <div class="row col-5">       
+      <div class="row col-5"  *ngIf="LoginUser()">       
           <fieldset class="rating">
             <div id="reviewStars-input">
                 <input  id="star-4" type="radio" [name]="inpustName" value="5" [checked]="rating===5" />
@@ -47,7 +46,6 @@
             </div>
           </fieldset>
       </div>
-    </form>
             <br>
   
         <div class="row">
@@ -72,24 +70,26 @@
       <!-- /.col-lg-9 -->
   
     </div>
-    <div class="card my-4">
-      <h5 class="card-header">Leave a Comment:</h5> 
-      <div class="card-body">
-        <form #f="ngForm" (ngSubmit)="Commenting(f.value, f)">
-          <div class="form-group">
-            <textarea name="Description" class="form-control" rows="3" ngModel></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+    <div *ngIf="LoginUser()">
+      <div class="card my-4">
+        <h5 class="card-header">Leave a Comment:</h5> 
+        <div class="card-body">
+          <form #f="ngForm" (ngSubmit)="Commenting(f.value, f)">
+            <div class="form-group">
+              <textarea name="Description" class="form-control" rows="3" ngModel></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
       </div>
-    </div>
-  
-    <!-- Single Comment -->
-    <div class="media mb-4" *ngFor="let c of comments">
-      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-      <div class="media-body">
-        <h5 class="mt-0">{{c.FullNameUser}} <small>{{c.CommentDate}}</small></h5>
-        {{c.Description}}
+    
+      <!-- Single Comment -->
+      <div class="media mb-4" *ngFor="let c of comments">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">{{c.FullNameUser}} <small>{{c.CommentDate}}</small></h5>
+          {{c.Description}}
+        </div>
       </div>
     </div>
     <!-- /.row -->

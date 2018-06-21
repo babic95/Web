@@ -27,6 +27,8 @@ namespace RentApp.Controllers
         }
 
         // GET: api/Services/5
+        [Route("api/User")]
+        [HttpGet]
         [ResponseType(typeof(AppUser))]
         public IHttpActionResult GetUser(string email)
         {
@@ -40,17 +42,14 @@ namespace RentApp.Controllers
         }
 
         // PUT: api/Services/5
+        [Route("api/UserPut")]
+        [HttpPut]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(int id, AppUser user)
+        public IHttpActionResult PutUser(AppUser user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != user.Id)
-            {
-                return BadRequest();
             }
 
             try
@@ -60,7 +59,7 @@ namespace RentApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!UserExists(user.Id))
                 {
                     return NotFound();
                 }

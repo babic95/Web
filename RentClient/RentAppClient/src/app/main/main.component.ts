@@ -13,6 +13,14 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.loginUser = localStorage.getItem("currentUserFullName");
   }
+  Authentication(){
+    if(localStorage.getItem("role") == "AppUser"){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
 
   LoginUser(){
       return localStorage.jwt;

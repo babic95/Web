@@ -40,6 +40,7 @@ namespace RentApp.Controllers
         }
 
         // PUT: api/Services/5
+        [Authorize(Roles = "Admin, Manager")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutBranchOffice(int id, BranchOffice office)
         {
@@ -74,6 +75,7 @@ namespace RentApp.Controllers
         }
 
         // POST: api/Services
+        [Authorize(Roles = "Admin, Manager")]
         [ResponseType(typeof(BranchOffice))]
         public IHttpActionResult PostBranchOffice(BranchOffice office)
         {
@@ -89,6 +91,7 @@ namespace RentApp.Controllers
         }
 
         // DELETE: api/Services/5
+        [Authorize(Roles = "Admin, Manager")]
         [ResponseType(typeof(BranchOffice))]
         public IHttpActionResult DeleteBranchOffice(int id)
         {

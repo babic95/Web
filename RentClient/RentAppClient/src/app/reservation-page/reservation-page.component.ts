@@ -19,6 +19,8 @@ import OlProj from 'ol/proj';
 
 import { FormControl } from '@angular/forms';
 import { ReservationService } from '../services/reservation.service';
+import { RegistrationService } from '../services/registration.service';
+import { RegistrationUser } from '../models/RegistrationUser';
 
 @Component({
   selector: 'app-reservation-page',
@@ -27,8 +29,8 @@ import { ReservationService } from '../services/reservation.service';
   styles: ['agm-map {height: 500px; width: 800px;}'] //postavljamo sirinu i visinu mape
 })
 export class ReservationPageComponent implements OnInit {
-  vehicle: Vehicle
-  service: Service
+  vehicle: Vehicle = new Vehicle(-1,"","","","","","",null,-1);
+  service: Service = new Service("","","","",-1,-1);
   pictures: string[] = [];
   idService
   idVehicle
@@ -62,7 +64,9 @@ export class ReservationPageComponent implements OnInit {
   private reserve: boolean = false;
   private reserved: boolean = false;
 
-  constructor(private router: Router, private Vehicle: VehiclesService, private Service: ServicesService,  
+  private user: RegistrationUser = null;
+
+  constructor(private router: Router, private Vehicles: VehiclesService, private Services: ServicesService, private RegistrationServices: RegistrationService,  
     private branchOffice: BranchOfficeService, private activatedRoute: ActivatedRoute, private reservation: ReservationService) { 
       activatedRoute.params.subscribe(params => {this.idVehicle = params["vehicleId"], this.idService = params["serviceId"]});
       this.mapInfo1 = new MapInfo(45.25800424228705, 19.833547029022156, 
@@ -72,7 +76,20 @@ export class ReservationPageComponent implements OnInit {
         "assets/ftn.png",
         "Novi Sad" , "" , "");
 
+
       this.callGetBranches();
+  }
+   
+  LoginUser(){
+    return localStorage.jwt;
+  }  
+  Authentication(){
+    if(localStorage.getItem("role") == "AppUser"){
+      return false;
+    }
+    else{
+      return true;
+    }
   }
 
   ngOnInit() {
@@ -80,15 +97,27 @@ export class ReservationPageComponent implements OnInit {
     this.idService = x[2]
     this.idVehicle = x[3]
 
-    this.Service.getMethodService(this.idService)
+    this.Services.getMethodService(this.idService)
     .subscribe(
       data => {
         this.service = data;
-        this.Vehicle.getMethodVehicle(this.idVehicle)
+        this.Vehicles.getMethodVehicle(this.idVehicle)
         .subscribe(
           data2 => {
             this.vehicle = data2;
             this.pictures = this.vehicle.Pictures.split(';');
+            
+            if(localStorage.jwt){
+            this.RegistrationServices.getMethodRegistration(String(localStorage.getItem("currentUserEmail")))
+            .subscribe(
+              data => {
+                this.user = data;
+              },
+              error => {
+                alert("Greska 2")
+                console.log(error);
+              })
+            }
           },
           error => {
             alert("Greska 1")
@@ -96,7 +125,7 @@ export class ReservationPageComponent implements OnInit {
           })
       },
       error => {
-        alert("Greska 2")
+        alert("Greska 3")
         console.log(error);
       })
   }
@@ -161,20 +190,25 @@ export class ReservationPageComponent implements OnInit {
 
 
   Reservation(){
-    if(this.Start.value == undefined || this.End.value == undefined || this.branch1 == null || this.branch2 == null){
-      alert("You must select the dates and the branches!")
-      return;
+    if(this.user.CanMakeReservation){
+      if(this.Start.value == undefined || this.End.value == undefined || this.branch1 == null || this.branch2 == null){
+        alert("You must select the dates and the branches!")
+        return;
+      }
+      if(this.End.value < this.Start.value){
+        alert("Start date must be earlier then return date!")
+        return;
+      }
+      //this.Start.value.setDate(this.Start.value.getDate() + 1); // ne znam zasto smanjuje i povecava za jedan... ovako ga vratim kako je selektovano
+      //this.End.value.setDate(this.End.value.getDate() + 1);
+  
+      this.Rent = new Reservation(this.Start.value, this.End.value, this.branch1.Id, this.branch2.Id, this.idVehicle);
+  
+      this.isReserved(); // provere: dokumenta, da nije vec rezervisao, da li je vozilo vec neko rezervisao u tom periodu*/
     }
-    if(this.End.value < this.Start.value){
-      alert("Start date must be earlier then return date!")
-      return;
+    else{
+      this.router.navigateByUrl(`/uploadUserPicture`);
     }
-    //this.Start.value.setDate(this.Start.value.getDate() + 1); // ne znam zasto smanjuje i povecava za jedan... ovako ga vratim kako je selektovano
-    //this.End.value.setDate(this.End.value.getDate() + 1);
-
-    this.Rent = new Reservation(this.Start.value, this.End.value, this.branch1.Id, this.branch2.Id, this.idVehicle);
-
-    this.isReserved(); // provere: dokumenta, da nije vec rezervisao, da li je vozilo vec neko rezervisao u tom periodu*/
   }
 
   isReserved(){
@@ -215,7 +249,7 @@ export class ReservationPageComponent implements OnInit {
   }
 
   Remove(vehicleId){
-    this.Vehicle.deleteMethodVehicle(vehicleId).subscribe(
+    this.Vehicles.deleteMethodVehicle(vehicleId).subscribe(
       data => {
         alert("Successful remove vehicle!");
         

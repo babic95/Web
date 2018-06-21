@@ -5,6 +5,8 @@ export class RegistrationUser {
     Password: string; // required, value must be equal to confirm password.
     ConfirmPassword: string; // required, value must be equal to password. 
     Birthday: string; // required, value must be equal to password. 
+    CanMakeReservation: boolean; // required, value must be equal to password. 
+    Picture: string; // required, value must be equal to password. 
 
     constructor(id: number, fullName: string, email:string, password:string, confirmPassword: string, date: string){
         this.Id = id;

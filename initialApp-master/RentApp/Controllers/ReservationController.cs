@@ -42,6 +42,7 @@ namespace RentApp.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, Manager, AppUser")]
         // PUT: api/Services/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutReservation(int id, Reservation reservation)
@@ -76,6 +77,7 @@ namespace RentApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Authorize(Roles = "Admin, Manager, AppUser")]
         // POST: api/Services
         [ResponseType(typeof(Reservation))]
         public IHttpActionResult PostReservation(Reservation reservation)

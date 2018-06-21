@@ -25,6 +25,7 @@ import { TruncateModule } from 'ng2-truncate';
 import { AddBranchOfficeComponent } from './add-branch-office/add-branch-office.component';
 import { AddVecihleComponent } from './add-vecihle/add-vecihle.component';
 import { AgmCoreModule } from '@agm/core';
+import { UploadUserPictureComponent } from './upload-user-picture/upload-user-picture.component';
 
 const Routes = [
   
@@ -35,7 +36,7 @@ const Routes = [
   },
   {
     path: "start",
-    component: StartPageComponent,
+    component: StartPageComponent
   },
   {
     path: "login",
@@ -68,6 +69,10 @@ const Routes = [
   {
     path: "addVehicle/:IdService/:IdVehicle",
     component: AddVecihleComponent
+  },
+  {
+    path: "uploadUserPicture",
+    component: UploadUserPictureComponent
   }
 ]
 
@@ -85,7 +90,8 @@ const Routes = [
     FileSelectDirective,
     FileDropDirective,
     AddBranchOfficeComponent,
-    AddVecihleComponent
+    AddVecihleComponent,
+    UploadUserPictureComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +115,14 @@ const Routes = [
       provide: 'CanAlwaysActivateGuard',
       useValue: () => {
         return true;
+      }
+    },
+    {
+      provide: 'CanAll',
+      useValue: () => {
+        if(localStorage.jwt){
+          return true;
+        }
       } 
     }*/],
   bootstrap: [AppComponent]

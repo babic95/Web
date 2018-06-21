@@ -19,7 +19,7 @@ export class ReservationService {
   }
 
   getMethodReservation(VehicleId, DateRezervation, ReturnDate): Observable<boolean> {
-    return this.httpClient.get<boolean>('http://localhost:51680/api/Reservation/',{params: {VehicleId, DateRezervation, ReturnDate}}) 
+    return this.httpClient.get<boolean>('http://localhost:51680/api/Reservation',{params: {VehicleId, DateRezervation, ReturnDate}}) 
   }
 
   postMethodReservation(newMember): Observable<any> {

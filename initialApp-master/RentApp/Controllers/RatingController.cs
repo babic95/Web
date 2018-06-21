@@ -40,6 +40,7 @@ namespace RentApp.Controllers
         }
 
         // PUT: api/Services/5
+        [Authorize(Roles = "Admin, Manager, AppUser")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRating(int id, Rating rating)
         {
@@ -70,6 +71,7 @@ namespace RentApp.Controllers
         }
 
         // POST: api/Services
+        [Authorize(Roles = "Admin, Manager, AppUser")]
         [ResponseType(typeof(Rating))]
         public IHttpActionResult PostRating(Rating rating)
         {
@@ -97,6 +99,7 @@ namespace RentApp.Controllers
         }
 
         // DELETE: api/Services/5
+        [Authorize(Roles = "Admin, Manager")]
         [ResponseType(typeof(Rating))]
         public IHttpActionResult DeleteRating(int id)
         {

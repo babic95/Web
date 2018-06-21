@@ -38,6 +38,18 @@ export class ServicePageComponent implements OnInit {
     private Comment: CommentsService) { 
   }
     
+  Authentication(){
+    if(localStorage.getItem("role") == "AppUser"){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  
+  LoginUser(){
+    return localStorage.jwt;
+}
 
   ngOnInit() {
     this.ratingService = new Rating(0,0,0)

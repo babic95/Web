@@ -40,6 +40,7 @@ namespace RentApp.Controllers
         }
 
         // PUT: api/Services/5
+        [Authorize(Roles = "Admin, Manager, AppUser")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutComment(int id, Comment comment)
         {
@@ -74,6 +75,7 @@ namespace RentApp.Controllers
         }
 
         // POST: api/Services
+        [Authorize(Roles = "Admin, Manager, AppUser")]
         [ResponseType(typeof(Comment))]
         public IHttpActionResult PostComment(Comment comment)
         {

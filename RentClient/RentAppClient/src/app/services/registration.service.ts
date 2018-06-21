@@ -14,11 +14,15 @@ export class RegistrationService {
 
   constructor(private http: Http, private httpClient: HttpClient) { }
   
-  /*getMethodComment(): Observable<Comment> {
-    return this.httpClient.get<Comment>('http://localhost:51680/api/Comment/')  
-  }*/
+  getMethodRegistration(email): Observable<RegistrationUser> {
+    return this.httpClient.get<RegistrationUser>('http://localhost:51680/api/User?email='+email)  
+  }
 
   postMethodRegistration(newMember): Observable<any> {
     return this.httpClient.post("http://localhost:51680/api/Account/Register", newMember)
+  }
+
+  putMethodRegistration(newMember): Observable<any> {
+    return this.httpClient.put("http://localhost:51680/api/UserPut", newMember)
   }
 }
