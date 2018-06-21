@@ -14,11 +14,13 @@ export class BranchOfficeService {
   constructor(private http: Http, private httpClient: HttpClient) { }
   
   getMethodBranchOffices(idService): Observable<BranchOffice[]> {
-    return this.httpClient.get<BranchOffice[]>('http://localhost:51680/api/BranchOffice',{params: idService})
+    return this.httpClient.get<BranchOffice[]>('http://localhost:51680/api/BranchOffice',{params: {idService}})
   }
 
-  getMethodBranchOffice(): Observable<BranchOffice> {
-    return this.httpClient.get<BranchOffice>('http://localhost:51680/api/BranchOffice/')  
+  getMethodBranchOffice(idService, lat, lgt): Observable<BranchOffice> {
+    return this.httpClient.get<BranchOffice>('http://localhost:51680/api/BranchOffice/',{params:{idService,
+                                                                                                 lat,
+                                                                                                 lgt}}) 
   }
 
   postMethodBranchOffice(newMember): Observable<any> {

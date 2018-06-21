@@ -22,6 +22,7 @@ import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-u
 import { TruncateModule } from 'ng2-truncate';
 import { AddBranchOfficeComponent } from './add-branch-office/add-branch-office.component';
 import { AddVecihleComponent } from './add-vecihle/add-vecihle.component';
+import { AgmCoreModule } from '@agm/core';
 
 const Routes = [
   
@@ -93,6 +94,7 @@ const Routes = [
     HttpClientXsrfModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'}),
     Ng2CarouselamosModule
   ],
   providers: [],

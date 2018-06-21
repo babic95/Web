@@ -28,9 +28,9 @@ namespace RentApp.Controllers
 
         // GET: api/Services/5
         [ResponseType(typeof(BranchOffice))]
-        public IHttpActionResult GetBranchOffice(int id)
+        public IHttpActionResult GetBranchOffice(int idService, double lat, double lgt)
         {
-            BranchOffice office = unitOfWork.BranchOffices.Get(id);
+            BranchOffice office = unitOfWork.BranchOffices.GetBranch(idService, lat, lgt);
             if (office == null)
             {
                 return NotFound();

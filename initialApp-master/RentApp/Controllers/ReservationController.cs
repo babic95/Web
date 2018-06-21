@@ -28,15 +28,18 @@ namespace RentApp.Controllers
 
         // GET: api/Services/5
         [ResponseType(typeof(Reservation))]
-        public IHttpActionResult GetReservation(int id)
+        public IHttpActionResult GetReservation(int VehicleId, DateTime DateRezervation, DateTime ReturnDate)
         {
-            Reservation reservation = unitOfWork.Reservations.Get(id);
-            if (reservation == null)
+            bool reservation = unitOfWork.Reservations.GetReservation(VehicleId, DateRezervation, ReturnDate);
+            if (!reservation)
             {
                 return NotFound();
             }
+            else
+            {
+                return Ok(reservation);
+            }
 
-            return Ok(reservation);
         }
 
         // PUT: api/Services/5

@@ -18,6 +18,11 @@ namespace RentApp.Persistance.Repository
             return RADBContext.BranchOffices.Where<BranchOffice>(v => v.ServiceId == idService).OrderBy(v => v.Addres);
         }
 
+        public BranchOffice GetBranch(int idService, double lat, double lgt)
+        {
+            return RADBContext.BranchOffices.Where<BranchOffice>(v => v.ServiceId == idService).Where(v => v.X == lgt).Where(v => v.Y == lat).FirstOrDefault();
+        }
+
         protected RADBContext RADBContext { get { return context as RADBContext; } }
     }
 }

@@ -8,22 +8,37 @@
                             <h3 class="mb-0 my-2">Add Branch Office</h3>
                         </div>
                         <div class="card-body">
-                            <form #f="ngForm" (ngSubmit)="AddBranchOffice(f.value, f)">
                                 <div class="form-group">
                                   <label>Upload Image</label>
                                   <div class="row file-field input-field">
                                       <div class="btn">
-                                        <input name="Image" type="file" ngModel>
+                                        <input name="Image" type="file" [(ngModel)]="picture">
                                       </div>
                                     </div>
                                 </div>
-                                <div>
 
+                                <div class="form-group">
+                                    <label for="uname1">Address</label>
+                                    <input type="text" class="form-control form-control-lg rounded-0" name="Address" placeholder="Address" [(ngModel)]="address" required="" ngModel>
+                                    <div class="invalid-feedback">Oops, you missed this one.</div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-lg float-right">Add</button>
+                                        <p>Select the place on map where is your branch located:</p>
+                                        <div class="col-md-1">
+                                          <div style="width:50%; margin: 0 auto">
+                                            <p>
+                                              <!-- Kreiramo mapu -->
+                                              <agm-map [latitude]="mapInfo.CenterLat" [longitude]="mapInfo.CenterLong" [zoom]="13" (mapClick)="placeMarker($event)">
+                                               
+                                                <!-- Postavljamo markere -->
+                                                <agm-marker *ngFor="let data of markers;" [latitude]="data.Lat" [longitude]="data.Lgt"></agm-marker>
+                                                <agm-marker [latitude]="this.tempMarker.Lat" [longitude]="this.tempMarker.Lgt"></agm-marker>
+                                              </agm-map>
+                                            </p>
+                                            </div>
+                                        </div>
+                                    <button type="submit" (click)="AddBranch()" class="btn btn-success btn-lg float-right">Add</button>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>
