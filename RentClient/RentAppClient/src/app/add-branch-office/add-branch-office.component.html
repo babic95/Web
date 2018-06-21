@@ -1,21 +1,82 @@
 <div class="container py-5">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-13">
             <div class="row">
-                <div class="col-md-6 mx-auto">
+                <div class="col-md-10 mx-auto">
                     <div class="card border-secondary">
                         <div class="card-header">
                             <h3 class="mb-0 my-2">Add Branch Office</h3>
                         </div>
                         <div class="card-body">
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                   <label>Upload Image</label>
                                   <div class="row file-field input-field">
                                       <div class="btn">
-                                        <input name="Image" type="file" [(ngModel)]="picture">
+                                        <input type="file" ng2FileSelect [(uploader)]="uploader2">
                                       </div>
                                     </div>
-                                </div>
+                                </div>-->
+                                
+                            <div class="container">  
+                                <div class="row">
+                                        <div class="col-md-3">                
+                                            <h3>Select file</h3>        
+                                            <input type="file" ng2FileSelect [uploader]="uploader2"/>
+                                        </div>
+
+                                        <div class="col-md-9" style="margin-bottom: 40px">
+                                 
+                                            <h3>Upload queue</h3>
+                                            <p>Queue length: {{ uploader2?.queue?.length }}</p>
+                                 
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th width="50%">Name</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let item of uploader2.queue">
+                                                    <td><strong>{{ item?.file?.name }}</strong></td>
+                                                    <td *ngIf="uploader2.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                                                    <td *ngIf="uploader2.isHTML5">
+                                                        <div class="progress" style="margin-bottom: 0;">
+                                                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                 
+                                            <div>
+                                                   <div>
+                                                       Queue progress:
+                                                       <div class="progress">
+                                                           <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader2.progress + '%' }"></div>
+                                                       </div>
+                                                   </div>
+                                                   <button type="button" class="btn btn-success btn-s"
+                                                           (click)="addAndUpload2()" [disabled]="!uploader2.getNotUploadedItems().length">
+                                                       <span class="glyphicon glyphicon-upload"></span> Upload
+                                                   </button>
+                                                   <button type="button" class="btn btn-warning btn-s"
+                                                           (click)="uploader2.cancelAll()" [disabled]="!uploader2.isUploading">
+                                                       <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                   </button>
+                                                   <button type="button" class="btn btn-danger btn-s"
+                                                           (click)="castAndClear2()" [disabled]="!uploader2.queue.length">
+                                                       <span class="glyphicon glyphicon-trash"></span> Remove
+                                                   </button>
+                                               </div>
+                                               <br>                      
+                                        </div>
+                                 
+                                    </div>
 
                                 <div class="form-group">
                                     <label for="uname1">Address</label>
@@ -39,6 +100,7 @@
                                         </div>
                                     <button type="submit" (click)="AddBranch()" class="btn btn-success btn-lg float-right">Add</button>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>

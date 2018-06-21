@@ -8,31 +8,82 @@
                             <h3 class="mb-0 my-2">Add Service</h3>
                         </div>
                         <div class="card-body">
-                            <form #f="ngForm" (ngSubmit)="AddService(f.value, f)">
                                 <div class="form-group">
                                     <label for="inputName">Service Name</label>
-                                    <input type="text" class="form-control" id="inputName" name="Name" placeholder="full name" ngModel>
+                                    <input type="text" class="form-control" id="inputName" placeholder="full name"  [(ngModel)]="service.Name">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail3">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail3" name="Email" placeholder="email@gmail.com" required="" ngModel>
+                                    <input type="email" class="form-control" id="inputEmail3"  [(ngModel)]="service.Email" placeholder="email@gmail.com" required="" ngModel>
                                 </div>
                                 <div class="form-group">
-                                  <label>Upload Logo</label>
-                                  <div class="row file-field input-field">
-                                      <div class="btn">
-                                        <input name="Logo" type="file" ngModel>
-                                      </div>
+                                    <div class="row">
+                                        <div class="col-md-3">                
+                                            <h3>Select file</h3>        
+                                            <input type="file" ng2FileSelect [uploader]="uploader2"/>
+                                        </div>
+
+                                        <div class="col-md-9" style="margin-bottom: 40px">
+                                 
+                                            <h3>Upload queue</h3>
+                                            <p>Queue length: {{ uploader2?.queue?.length }}</p>
+                                 
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th width="50%">Name</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let item of uploader2.queue">
+                                                    <td><strong>{{ item?.file?.name }}</strong></td>
+                                                    <td *ngIf="uploader2.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                                                    <td *ngIf="uploader2.isHTML5">
+                                                        <div class="progress" style="margin-bottom: 0;">
+                                                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                 
+                                            <div>
+                                                   <div>
+                                                       Queue progress:
+                                                       <div class="progress">
+                                                           <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader2.progress + '%' }"></div>
+                                                       </div>
+                                                   </div>
+                                                   <button type="button" class="btn btn-success btn-s"
+                                                           (click)="addAndUpload2()" [disabled]="!uploader2.getNotUploadedItems().length">
+                                                       <span class="glyphicon glyphicon-upload"></span> Upload
+                                                   </button>
+                                                   <button type="button" class="btn btn-warning btn-s"
+                                                           (click)="uploader2.cancelAll()" [disabled]="!uploader2.isUploading">
+                                                       <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                   </button>
+                                                   <button type="button" class="btn btn-danger btn-s"
+                                                           (click)="castAndClear2()" [disabled]="!uploader2.queue.length">
+                                                       <span class="glyphicon glyphicon-trash"></span> Remove
+                                                   </button>
+                                               </div>
+                                               <br>                      
+                                        </div>
+                                 
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputName">Description Service</label>
-                                    <textarea name="Description" rows="4" ngModel></textarea>
+                                    <textarea name="Description" rows="4"  [(ngModel)]="service.Description"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-lg float-right">Add</button>
+                                    <button type="submit" (click)="AddService()" class="btn btn-success btn-lg float-right">Add</button>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>

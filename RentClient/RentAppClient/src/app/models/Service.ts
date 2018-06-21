@@ -7,8 +7,7 @@ export class Service {
     AppUserId: number;
     Rating: number;
 
-    constructor(id: number, name:string, email:string, description: string, logo: string, appUserId: number, rating: number){
-        this.Id = id;
+    constructor(name:string, email:string, description: string, logo: string, appUserId: number, rating: number){
         this.Name = name;
         this.Email = email;
         this.Description = description;

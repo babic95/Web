@@ -11,11 +11,13 @@ import { StartPageComponent } from './start-page/start-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ServicePageComponent } from './service-page/service-page.component';
-import { ServicePageCommentComponent } from './service-page-comment/service-page-comment.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 import { MainComponent } from './main/main.component';
 import { BranchOfficeComponent } from './branch-office/branch-office.component';
 import { AddServiceComponent } from './add-service/add-service.component';
+import { CanActivateViaAuthGuard } from './guard/auth.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptor/interceptor';
 
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
@@ -48,10 +50,6 @@ const Routes = [
     component: ServicePageComponent
   },
   {
-    path: "comment/:IdService",
-    component: ServicePageCommentComponent
-  },
-  {
     path: "reservation/:IdService/:IdVehicle",
     component: ReservationPageComponent
   },
@@ -66,6 +64,10 @@ const Routes = [
   {
     path: "addVehicle/:IdService",
     component: AddVecihleComponent
+  },
+  {
+    path: "addVehicle/:IdService/:IdVehicle",
+    component: AddVecihleComponent
   }
 ]
 
@@ -76,7 +78,6 @@ const Routes = [
     LoginComponent,
     RegistrationComponent,
     ServicePageComponent,
-    ServicePageCommentComponent,
     ReservationPageComponent,
     MainComponent,
     BranchOfficeComponent,
@@ -97,7 +98,19 @@ const Routes = [
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'}),
     Ng2CarouselamosModule
   ],
-  providers: [],
+  providers: [/*
+    CanActivateViaAuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: 'CanAlwaysActivateGuard',
+      useValue: () => {
+        return true;
+      } 
+    }*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

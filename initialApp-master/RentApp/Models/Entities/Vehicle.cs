@@ -18,8 +18,9 @@ namespace RentApp.Models.Entities
         [Column("ProductionDate", TypeName = "datetime2")]
         public DateTime ProductionDate { get; set; }
         public string Pictures { get; set; }
+        public string Picture { get; set; }
         public string Description { get; set; }
-        public bool Available { get; set; }
+        public double Pirce { get; set; }
 
     }
 }

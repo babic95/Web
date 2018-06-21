@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -63,7 +60,7 @@ namespace RentApp.Controllers
                             var filePath = HttpContext.Current.Server.MapPath("/Content/Picture/" + postedFile.FileName);
                             postedFile.SaveAs(filePath);
 
-                            var message = string.Format("/Content/Images/" + postedFile.FileName);
+                            var message = string.Format("/Content/Picture/" + postedFile.FileName);
                             return Request.CreateResponse(HttpStatusCode.OK, message);
                         }
                     }

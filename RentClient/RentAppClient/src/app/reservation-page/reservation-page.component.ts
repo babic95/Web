@@ -29,6 +29,7 @@ import { ReservationService } from '../services/reservation.service';
 export class ReservationPageComponent implements OnInit {
   vehicle: Vehicle
   service: Service
+  pictures: string[] = [];
   idService
   idVehicle
 
@@ -87,14 +88,15 @@ export class ReservationPageComponent implements OnInit {
         .subscribe(
           data2 => {
             this.vehicle = data2;
+            this.pictures = this.vehicle.Pictures.split(';');
           },
           error => {
-            alert("Greska")
+            alert("Greska 1")
             console.log(error);
           })
       },
       error => {
-        alert("Greska")
+        alert("Greska 2")
         console.log(error);
       })
   }
@@ -199,7 +201,25 @@ export class ReservationPageComponent implements OnInit {
     this.reservation.postMethodReservation(rent)
     .subscribe(
       data => {
+        alert("Successful reservation!");
         
+        this.router.navigateByUrl(`/service/${this.idService}`);
+      },
+      error => {
+        console.log(error);
+      })
+  }
+
+  Updata(vehicleId){
+    this.router.navigateByUrl(`/addVehicle/${this.idService}/${this.idVehicle}`);
+  }
+
+  Remove(vehicleId){
+    this.Vehicle.deleteMethodVehicle(vehicleId).subscribe(
+      data => {
+        alert("Successful remove vehicle!");
+        
+        this.router.navigateByUrl(`/service/${this.idService}`);
       },
       error => {
         console.log(error);

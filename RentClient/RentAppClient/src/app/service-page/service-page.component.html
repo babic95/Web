@@ -18,7 +18,7 @@
       <div class="col-lg-9"align="center">
 
           <div class="card mt-4">
-              <img class="card-img-top img-fluid" src="service.Name" alt="">
+              <img class="card-img-top img-fluid" src="http://localhost:51680{{service.Logo}}" alt="">
               <div class="card-body">
                 <h3 class="card-title">{{service.Name}}</h3>
                 <p class="card-text">{{service.Description}}</p>
@@ -54,12 +54,12 @@
   
           <div class="col-lg-4 col-md-6 mb-4" *ngFor="let v of vehicles">
             <div class="card h-100">
-              <a [routerLink]="['/reservation',service.Id, v.Id]" href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <a [routerLink]="['/reservation',service.Id, v.Id]" href="#"><img class="card-img-top" src="http://localhost:51680{{v.Picture}}" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
                   <a [routerLink]="['/reservation',service.Id, v.Id]" href="#">{{v.Producer}} <small>{{v.Model}}</small></a>
                 </h4>
-                <h5>$24.99</h5>
+                <h5>{{v.Pirce}}$</h5>
                 <p class="card-text">{{v.Description}}</p>
               </div>
             </div>

@@ -8,10 +8,9 @@
                             <h3 class="mb-0 my-2">Add Service</h3>
                         </div>
                         <div class="card-body">
-                            <form #f="ngForm" (ngSubmit)="AddVehicle(f.value, f)">
                                 <div class="form-group">
                                     <label for="inputName">Type Vehicle</label>
-                                    <select name="TypeVehicle" ngModel>
+                                    <select [(ngModel)]="vehicle.TypeVehicle" name="TypeVehicle" ngModel>
                                             <option value="Caravan">Caravan</option>
                                             <option value="Hatchback">Hatchback</option>
                                             <option value="Limuzine">Limuzine</option>
@@ -22,32 +21,85 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="inputName">Producer</label>
-                                    <input type="text" class="form-control" id="inputName" name="Producer" placeholder="Producer" ngModel>
+                                    <input type="text" [(ngModel)]="vehicle.Producer" class="form-control" id="inputName" placeholder="Producer" >
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail3">Model</label>
-                                    <input type="text" class="form-control" id="inputEmail3" name="Model" placeholder="Model" required="" ngModel>
+                                    <input type="text" class="form-control" [(ngModel)]="vehicle.Model" id="inputEmail3" placeholder="Model" required="" >
                                 </div>
                                 <div class="form-group">
                                     <label for="inputVerify3">Production Date</label>
-                                    <input type="date" class="form-control" name="ProductionDate" id="example-date-input" ngModel>
+                                    <input type="date" class="form-control" [(ngModel)]="vehicle.ProductionDate" id="example-date-input" >
                                 </div>
                                 <div class="form-group">
-                                  <label>Upload Images</label>
-                                  <div class="row file-field input-field">
-                                      <div class="btn">
-                                        <input name="Pictures" type="file" ngModel>
-                                      </div>
-                                    </div>
+                                    <label for="inputVerify3">Pirce</label>
+                                    <input type="text" class="form-control" [(ngModel)]="vehicle.Pirce" placeholder="$">
+                                </div>
+                                <div class="form-group">
+                                        <div class="col-md-3">
+                     
+                                            <h3>Select file</h3>        
+                                            <input type="file" ng2FileSelect [uploader]="uploader" multiple/>
+                                        </div>
+                                 
+                                        <div class="col-md-9" style="margin-bottom: 40px">
+                                 
+                                            <h3>Upload queue</h3>
+                                            <p>Queue length: {{ uploader?.queue?.length }}</p>
+                             
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th width="50%">Name</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let item of uploader.queue">
+                                                <td><strong>{{ item?.file?.name }}</strong></td>
+                                                <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                                                <td *ngIf="uploader.isHTML5">
+                                                    <div class="progress" style="margin-bottom: 0;">
+                                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                             
+                                        <div>
+                                               <div>
+                                                   Queue progress:
+                                                   <div class="progress" style="">
+                                                       <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                                                   </div>
+                                               </div>
+                                               <button type="button" class="btn btn-success btn-s"
+                                                       (click)="addAndUpload()" [disabled]="!uploader.getNotUploadedItems().length">
+                                                   <span class="glyphicon glyphicon-upload"></span> Upload all
+                                               </button>
+                                               <button type="button" class="btn btn-warning btn-s"
+                                                       (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                                                   <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                               </button>
+                                               <button type="button" class="btn btn-danger btn-s"
+                                                       (click)="castAndClear()" [disabled]="!uploader.queue.length">
+                                                   <span class="glyphicon glyphicon-trash"></span> Remove all
+                                               </button>
+                                           </div>
+                                           <br>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputName">Description Vehicle</label>
-                                    <textarea name="Description" rows="4" ngModel></textarea>
+                                    <textarea name="Description"  [(ngModel)]="vehicle.Description"  rows="4"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-lg float-right">Add</button>
+                                    <button type="submit" (click)="AddVehicle()" class="btn btn-success btn-lg float-right">Add</button>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>

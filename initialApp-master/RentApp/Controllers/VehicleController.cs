@@ -21,9 +21,9 @@ namespace RentApp.Controllers
         }
 
         // GET: api/Vehicles
-        public IEnumerable<Vehicle> GetVehicles(int pageIndex, int idService)
+        public IEnumerable<Vehicle> GetVehicles(int idService)
         {
-            return unitOfWork.Vehicles.GetAll(pageIndex, 12, idService);
+            return unitOfWork.Vehicles.GetAll(idService);
         }
 
         // GET: api/Vehicles/5
@@ -36,21 +36,18 @@ namespace RentApp.Controllers
                 return NotFound();
             }
 
+
+
             return Ok(Vehicle);
         }
 
         // PUT: api/Vehicles/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutVehicle(int id, Vehicle Vehicle)
+        public IHttpActionResult PutVehicle(Vehicle Vehicle)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != Vehicle.Id)
-            {
-                return BadRequest();
             }
 
             try
@@ -60,7 +57,7 @@ namespace RentApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VehicleExists(id))
+                if (!VehicleExists(Vehicle.Id))
                 {
                     return NotFound();
                 }

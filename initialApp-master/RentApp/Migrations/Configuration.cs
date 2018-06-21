@@ -119,7 +119,7 @@ namespace RentApp.Migrations
             v.Model = "307";
             v.ProductionDate = DateTime.Now;
             v.ServiceId = ser.Id;
-            v.Available = true;
+            v.Pirce = 25;
 
             br.Addres = "br_1_addr";
             br.X = 555555;

@@ -19,12 +19,20 @@ export class VehiclesService {
                                                                                           idService}})  
   }
 
-  getMethodVehicle(idService): Observable<Vehicle> {
-    return this.httpClient.get<Vehicle>(`http://localhost:51680/api/Vehicle/${idService}`)  
+  getMethodVehicle(VehicleId): Observable<Vehicle> {
+    return this.httpClient.get<Vehicle>(`http://localhost:51680/api/Vehicle/${VehicleId}`)  
   }
 
   postMethodVehicle(newMember): Observable<any> {
     return this.httpClient.post("http://localhost:51680/api/Vehicle", newMember)
+  }
+
+  deleteMethodVehicle(VehicleId): Observable<Vehicle> {
+    return this.httpClient.delete<Vehicle>(`http://localhost:51680/api/Vehicle/${VehicleId}`)
+  }
+
+  putMethodVehicle(newMember): Observable<any> {
+    return this.httpClient.put("http://localhost:51680/api/Vehicle", newMember)
   }
   
 }
